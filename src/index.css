@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #635fc7;
+  --color-primary-hover: #a8a4ff;
+  --color-white: #ffffff;
+  --color-red: #ea5555;
+  --color-red-hover: #ff9898;
+
+  --color-line-light: #e4ebfa;
+  --color-line-dark: #3e3f4e;
+  --color-overlay: rgb(0 0 0 / 50%);
+  --color-shadow: rgba(54, 78, 126, 0.1);
+  --color-column-blue: #49a4e9;
+  --color-column-purple: #8471f2;
+  --color-column-green: #67e2ae;
+  --color-column-orange: #e9a449;
+  --shadow-task-card: 0 4px 6px 0 var(--color-shadow);
+
+  --color-body-light: #f4f7fd;
+  --color-layout-light: #ffffff;
+  --color-card-light: #ffffff;
+  --color-text-main-light: #000112;
+  --color-text-muted-light: #828fa3;
+  --color-input-border-light: rgba(130, 143, 163, 0.25);
+
+  --color-body-dark: #20212c;
+  --color-layout-dark: #2b2c37;
+  --color-card-dark: #2b2c37;
+  --color-text-main-dark: #ffffff;
+  --color-text-muted-dark: #828fa3;
+  --color-input-border-dark: rgba(130, 143, 163, 0.25);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-body-light);
+    color: var(--color-text-main-light);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  .dark body {
+    background-color: var(--color-body-dark);
+    color: var(--color-text-main-dark);
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
