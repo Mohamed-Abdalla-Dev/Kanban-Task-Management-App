@@ -26,8 +26,8 @@ export const InputField: React.FC<InputFieldProps> = ({
         )}
       </div>
       <input
-        {...register}
         {...props}
+        {...register}
         className={`w-full text-sm font-medium px-4 py-2.5 rounded border bg-transparent outline-none transition-colors placeholder:text-text-main-light/25 dark:placeholder:text-text-main-dark/25 ${
           error
             ? "border-red"
