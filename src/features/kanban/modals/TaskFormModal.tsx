@@ -47,21 +47,34 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
   });
 
   // Reset values each time the modal opens to avoid reusing stale form data.
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     if (taskToEdit) {
+  //       reset({
+  //         title: taskToEdit.title,
+  //         description: taskToEdit.description || "",
+  //         status: taskToEdit.status,
+  //         subtasks: taskToEdit.subtasks.map((st) => ({ title: st.title })),
+  //       });
+  //     } else {
+  //       reset({
+  //         title: "",
+  //         description: "",
+  //         status: board?.columns?.[0]?.id || "",
+  //         subtasks: [],
+  //       });
+  //     }
+  //   }
+  // }, [isOpen, taskToEdit, board, reset]);
+
+    useEffect(() => {
     if (isOpen) {
       if (taskToEdit) {
         reset({
-          title: taskToEdit.title,
+          title: taskToEdit.title || "", // تأكد من وجود || ""
           description: taskToEdit.description || "",
-          status: taskToEdit.status,
-          subtasks: taskToEdit.subtasks.map((st) => ({ title: st.title })),
-        });
-      } else {
-        reset({
-          title: "",
-          description: "",
-          status: board?.columns?.[0]?.id || "",
-          subtasks: [],
+          status: taskToEdit.status || board?.columns?.[0]?.id || "",
+          subtasks: (taskToEdit.subtasks || []).map((st) => ({ title: st.title })),
         });
       }
     }
