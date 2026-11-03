@@ -110,19 +110,17 @@ export const BoardFormModal: React.FC<BoardFormModalProps> = ({
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-6 text-text-main-light dark:text-text-main-dark"
       > */}
-            <form
+      <form
         onSubmit={handleSubmit(
           (data) => {
-            // إذا ظهر هذا، يعني أن البيانات صحيحة ووصلت!
-            console.log("✅ 1. البيانات وصلت بنجاح:", data);
-            onSubmit(data); 
+            console.log("✅ 1. بيانات اللوحة وصلت بنجاح:", data);
+            onSubmit(data);
           },
           (errors) => {
-            // إذا ظهر هذا، يعني أن هناك خطأ في الفورم (Zod)
-            console.log("❌ 2. هناك أخطاء في التحقق:", errors);
+            console.log("❌ 2. أخطاء في نموذج اللوحة:", errors);
           }
         )}
-        className="space-y-6 pr-2 custom-scrollbar text-text-main-light dark:text-text-main-dark"
+        className="space-y-6 text-text-main-light dark:text-text-main-dark"
       >
         <InputField
           label="Board Name"
