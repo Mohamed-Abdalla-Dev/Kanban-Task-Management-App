@@ -67,21 +67,6 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
     }
   }, [isOpen, taskToEdit, board, reset]);
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     if (taskToEdit) {
-  //       reset({
-  //         title: taskToEdit.title || "", // تأكد من وجود || ""
-  //         description: taskToEdit.description || "",
-  //         status: taskToEdit.status || board?.columns?.[0]?.id || "",
-  //         subtasks: (taskToEdit.subtasks || []).map((st) => ({
-  //           title: st.title,
-  //         })),
-  //       });
-  //     }
-  //   }
-  // }, [isOpen, taskToEdit, board, reset]);
-
   const onSubmit = (data: TaskFormValues) => {
     const subtaskData = data.subtasks || [];
 
@@ -91,8 +76,8 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
           boardId: board.id,
           taskId: taskToEdit.id,
           updatedData: {
-            title: taskToEdit.title,
-            description: taskToEdit.description,
+            title: data.title,
+            description: data.description || "",
             status: data.status,
             subtasks: subtaskData,
           },
@@ -111,7 +96,7 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
           columnId: data.status,
           taskData: {
             title: data.title,
-            description: data.description,
+            description: data.description || "",
             subtasks: subtaskData,
           },
         },
@@ -131,22 +116,8 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
       onClose={onClose}
       title={isEditMode ? "Edit Task" : "Add New Task"}
     >
-      {/* <form
+      <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 pr-2 custom-scrollbar text-text-main-light dark:text-text-main-dark"
-      > */}
-            <form
-        onSubmit={handleSubmit(
-          (data) => {
-            // إذا ظهر هذا، يعني أن البيانات صحيحة ووصلت!
-            console.log("✅ 1. البيانات وصلت بنجاح:", data);
-            onSubmit(data); 
-          },
-          (errors) => {
-            // إذا ظهر هذا، يعني أن هناك خطأ في الفورم (Zod)
-            console.log("❌ 2. هناك أخطاء في التحقق:", errors);
-          }
-        )}
         className="space-y-6 pr-2 custom-scrollbar text-text-main-light dark:text-text-main-dark"
       >
         <InputField

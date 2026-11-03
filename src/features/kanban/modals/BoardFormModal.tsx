@@ -106,20 +106,8 @@ export const BoardFormModal: React.FC<BoardFormModalProps> = ({
       onClose={onClose}
       title={isEditMode ? "Edit Board" : "Add New Board"}
     >
-      {/* <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 text-text-main-light dark:text-text-main-dark"
-      > */}
       <form
-        onSubmit={handleSubmit(
-          (data) => {
-            console.log("✅ 1. بيانات اللوحة وصلت بنجاح:", data);
-            onSubmit(data);
-          },
-          (errors) => {
-            console.log("❌ 2. أخطاء في نموذج اللوحة:", errors);
-          }
-        )}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-6 text-text-main-light dark:text-text-main-dark"
       >
         <InputField
