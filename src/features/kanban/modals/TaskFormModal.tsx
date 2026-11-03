@@ -84,6 +84,8 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
 
   const onSubmit = (data: TaskFormValues) => {
     const subtaskData = data.subtasks || [];
+    const title = data.title.trim() || "";
+    const description = data.description?.trim() || "";
 
     if (isEditMode && taskToEdit) {
       updateTask.mutate(
@@ -91,8 +93,8 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
           boardId: board.id,
           taskId: taskToEdit.id,
           updatedData: {
-            title: data.title,
-            description: data.description || "",
+            title: title,
+            description: description,
             status: data.status,
             subtasks: subtaskData,
           },
@@ -110,8 +112,8 @@ export const TaskFormModal: React.FC<TaskFormModalProps> = ({
           boardId: board.id,
           columnId: data.status,
           taskData: {
-            title: data.title,
-            description: data.description || "",
+            title: title,
+            description: description,
             subtasks: subtaskData,
           },
         },
